@@ -132,9 +132,9 @@ qemu-system-riscv32\ -nographic\ -machine virt \-bios none\ -krenel hello3.elf
 ```
 **Output**
 ![Alt text](images/image10.png)
+![Alt text](images/image11.png)
 ![Alt text](images/image12.png)
 ![Alt text](images/image13.png)
-![Alt text](images/image14.png)
 
 ## Task 8: Compiler Optimizations
 *Compare unoptimized and optimized assembly.*
@@ -154,8 +154,8 @@ riscv32-unknown-elf-gcc -S -O0 hello.c -o hello_O0.s
 riscv32-unknown-elf-gcc -S -O2 hello.c -o hello_O2.s 
 ```
 **Output**
+![Alt text](images/image14.png)
 ![Alt text](images/image15.png)
-![Alt text](images/image16.png)
 
 ## Task 9: Inline Assembly – Reading the Cycle Counter
 *How to access low-level hardware counters in C.*
@@ -177,9 +177,9 @@ riscv32-unknown-elf-gcc -g O0 -march=rv32imac -mabi=ilp32 -nostdlib -T cyclic_co
 qemu-system-riscv32 -nographic -machine virt -bios none -kernel cyclic_counter.elf
 ```
 **Output**
+![Alt text](images/image16.png)
 ![Alt text](images/image17.png)
 ![Alt text](images/image18.png)
-![Alt text](images/image19.png)
 
 ## Task 10: Memory-Mapped I/O (GPIO Toggle)
 *Write directly to a hardware register.*
@@ -194,7 +194,7 @@ return 0;
 }
 ```
 **Output**
-![Alt text](images/image20.png)
+![Alt text](images/image19.png)
 
 ## Task 11: Minimal Linker Script
 *Tell the linker where to put your code and data.*
@@ -208,7 +208,7 @@ SECTIONS {
 }
 ```
 **Output**
-![Alt text](images/image21.png)
+![Alt text](images/image20.png)
 
 ## Task 12: What is crt0?
 *crt0.S is the tiny bit of assembly that runs before your main function.  
@@ -222,9 +222,9 @@ nano linker.ld
 riscv32-unknown-elf-gcc -T linker.ld nostdlib -march=rv32imc -mabi=ilp32 -o hello3.elf hello3.c
 ```
 **Output**
+![Alt text](images/image21.png)
 ![Alt text](images/image22.png)
 ![Alt text](images/image23.png)
-![Alt text](images/image24.png)
 
 ## Task 13: Timer Interrupts
 *Enable and handle the machine-timer interrupt (MTIP).  
@@ -237,9 +237,9 @@ nano trap.S
 riscv32-unknown-elf-gcc -march=rv32imczicsr -mabi=ilp32 -nostartfiles -T linker.ld 13.c trap.S -o 13.elf
 ```
 **Output**
+![Alt text](images/image24.png)
 ![Alt text](images/image25.png)
 ![Alt text](images/image26.png)
-![Alt text](images/image27.png)
 
 ## Task 14: What’s the "A" in rv32imac? 
 Instructions like `lr.w`, `sc.w`, `amoadd.w`, `amoswap.w`, etc. used for safe concurrent memory access.
@@ -264,22 +264,21 @@ These instructions are particularly useful for implementing synchronization mech
 ## Task 15: Atomic Test Program
 *Write a simple C program using atomic operations (or simulate with a spinlock).*
 **Output**
-![Alt text](images/image28.png)
+![Alt text](images/image27.png)
 
 ## Task 16: printf with No OS (Newlib)
 *Redirect `printf` output to UART by implementing `_write`.*
 
 **Code:**
 ```c
-int _write(int fd, char* buf, int len) {
-    for (int i = 0; i < len; i++)
-        *(volatile char*)UART0 = buf[i];
-    return len;
+#include<stdio.h>
+int main(){
+    printf
 }
 ```
 *Compile with `-nostartfiles` and link your custom `syscalls.c`.*
 **Output**
-![Alt text](images/image29.png)
+![Alt text](images/image28.png)
 
 ## Task 17: Endianness Check
 *Check if your system is little-endian.*
@@ -303,4 +302,4 @@ int main(){
 qemu-riscv32 ./endian.elf
 ```
 **Output**
-![Alt text](images/image30.png)
+![Alt text](images/image29.png)
