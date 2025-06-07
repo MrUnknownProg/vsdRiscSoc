@@ -66,6 +66,7 @@ riscv32-unknown-elf-objcopy -O ihex hello1.elf hello1.hex
 nano hello1.dump
 nano hello1.hex
 ```
+**Output**
 ![Alt text](images/image5.png)
 ![Alt text](images/image6.png)
 ![Alt text](images/image7.png)
