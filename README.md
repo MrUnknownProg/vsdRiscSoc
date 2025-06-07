@@ -279,6 +279,7 @@ int main(){
 *Compile with `-nostartfiles` and link your custom `syscalls.c`.*
 **Output**
 ![Alt text](images/image28.png)
+![Alt text](images/image29.png)
 
 ## Task 17: Endianness Check
 *Check if your system is little-endian.*
@@ -302,4 +303,4 @@ int main(){
 qemu-riscv32 ./endian.elf
 ```
 **Output**
-![Alt text](images/image29.png)
+![Alt text](images/image30.png)
